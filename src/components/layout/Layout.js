@@ -1,33 +1,27 @@
-import React, {Fragment, useEffect} from 'react';
-import {Input} from 'antd';
+import React, {Fragment, useEffect, useState} from 'react';
+import CategoryCard from '../categories/components/categoryCard';
+import Categories from '../categories';
 import {
   Container,
-  Row,
-  Col,
-  BSmall,
   Card,
   Collapse,
   Navbar,
-  Nav,
   Button,
   Form,
-  ListGroup,
   BDiv,
   Modal,
 } from 'bootstrap-4-react';
-import {EditOutlined} from '@ant-design/icons';
 import {firestore} from 'Api';
-import {Typography} from 'antd';
-
-const {Text, Title} = Typography;
 
 const Layout = () => {
-
-  useEffect(() => {
-    firestore.collection('categories').get().then(value => {
-      value.forEach(item => console.log(item.data()));
-    });
-  }, []);
+  //
+  // const [categories, setCategories] = useState([]);
+  //
+  // useEffect(() => {
+  //   firestore.collection('categories').get().then(value => {
+  //     setCategories(value.docs);
+  //   });
+  // }, []);
 
   return (
       <Fragment>
@@ -95,94 +89,12 @@ const Layout = () => {
           <h5>Общая сумма:&nbsp;3434&nbsp;₽</h5>
           <h5>Траты за месяц:&nbsp;535&nbsp;₽</h5>
           <h5>Доходы за месяц:&nbsp;534&nbsp;₽</h5>
-          <Card.Deck mb="3" mt={'3'}>
-            <Card>
-              <Card.Body>
-                <Card.Title className={'d-flex justify-content-between'}>
-                  Развлечения <EditOutlined
-                    style={{
-                      cursor: 'pointer',
-                      padding: 5,
-                      backgroundColor: '#eee',
-                      borderRadius: 5,
-                    }}
-                />
-                </Card.Title>
-                <Card.Text>
-                  <h5>
-                    Траты за месяц: 333 ₽
-                  </h5>
-                </Card.Text> <Card.Text>
-                <h5>
-                  Лимит на месяц: 333 ₽
-                </h5>
-              </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <Card.Text>
-                  <BSmall text="muted">
-                    Last updated 3 mins ago
-                  </BSmall>
-                </Card.Text>
-              </Card.Footer>
-            </Card>
-            <Card>
-              <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This card has even longer
-                  content
-                  than the first to show that equal height action.
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <Card.Text>
-                  <BSmall text="muted">
-                    Last updated 3 mins ago
-                  </BSmall>
-                </Card.Text>
-              </Card.Footer>
-            </Card>
-          </Card.Deck>
-          <Card.Deck mb="3" mt={'3'}>
-            <Card>
-              <Card.Body>
-                <Card.Title>Развлечения</Card.Title>
-                <Card.Subtitle>1</Card.Subtitle>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <Card.Text>
-                  <BSmall text="muted">
-                    Last updated 3 mins ago
-                  </BSmall>
-                </Card.Text>
-              </Card.Footer>
-            </Card>
-            <Card>
-              <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This card has even longer
-                  content
-                  than the first to show that equal height action.
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <Card.Text>
-                  <BSmall text="muted">
-                    Last updated 3 mins ago
-                  </BSmall>
-                </Card.Text>
-              </Card.Footer>
-            </Card>
-          </Card.Deck>
+
+          <Categories/>
+
+
+
+
         </Container>
       </Fragment>
   );
