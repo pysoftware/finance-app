@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5c9ca58c59d9908291a10fb398f204fe",
+    "revision": "8fa40e5a0fbc90b0f21b2fdd1436561e",
     "url": "/finance-app/index.html"
   },
   {
-    "revision": "b95125ba4768732703a0",
+    "revision": "eecd3edb9574585a5da3",
     "url": "/finance-app/static/css/main.05a864e6.chunk.css"
   },
   {
-    "revision": "e3f7ee8f99a68ba2beb7",
-    "url": "/finance-app/static/js/2.33d0455f.chunk.js"
+    "revision": "9414f4a481bed1e753ec",
+    "url": "/finance-app/static/js/2.b89f557c.chunk.js"
   },
   {
     "revision": "4bebe0170bbacb13c81f68e95cc2232e",
-    "url": "/finance-app/static/js/2.33d0455f.chunk.js.LICENSE.txt"
+    "url": "/finance-app/static/js/2.b89f557c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b95125ba4768732703a0",
-    "url": "/finance-app/static/js/main.fcbef81c.chunk.js"
+    "revision": "eecd3edb9574585a5da3",
+    "url": "/finance-app/static/js/main.74d53de0.chunk.js"
   },
   {
     "revision": "3d48b89ffb330a17f121",
