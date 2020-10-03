@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect} from 'react';
+import {Input} from 'antd';
 import {
   Container,
   Row,
@@ -10,9 +11,11 @@ import {
   Nav,
   Button,
   Form,
+  ListGroup,
   BDiv,
   Modal,
 } from 'bootstrap-4-react';
+import {EditOutlined} from '@ant-design/icons';
 import {firestore} from 'Api';
 import {Typography} from 'antd';
 
@@ -30,25 +33,41 @@ const Layout = () => {
       <Fragment>
 
         <Modal id="exampleModal" fade>
-          <Modal.Dialog>
+          <Modal.Dialog centered>
             <Modal.Content>
               <Modal.Header>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>Добавление траты</Modal.Title>
                 <Modal.Close>
                   <span aria-hidden="true">&times;</span>
                 </Modal.Close>
               </Modal.Header>
               <Modal.Body>
-                Modal body text goes here.
+                <Form>
+                  <Form.Group>
+                    <label>Сумма</label>
+                    <Form.Input
+                        type="number"
+                        placeholder="Введите сумму"
+                        onChange={(event) => console.log(event.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group>
+                    <label htmlFor="exampleControlsInput1">
+                      Категория
+                    </label>
+                    <Form.Select>
+                      <option>Large select</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Form>
               </Modal.Body>
               <Modal.Footer>
-                <Button secondary data-dismiss="modal">Close</Button>
-                <Button primary>Save changes</Button>
+                <Button secondary data-dismiss="modal">Закрыть</Button>
+                <Button primary>Добавить трату</Button>
               </Modal.Footer>
             </Modal.Content>
           </Modal.Dialog>
         </Modal>
-
 
         <Navbar expand="lg" dark bg="dark" mb="3" sticky="top">
           <Navbar.Brand href="#">Финансы</Navbar.Brand>
@@ -58,15 +77,19 @@ const Layout = () => {
               <Button success mr={2} mt={2}>
                 Добавить категорию
               </Button>
-              <Button info mr={2} mt={2}>
+              <Button
+                  info
+                  mr={2}
+                  mt={2}
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+              >
                 Добавить трату
-              </Button>
-              <Button primary data-toggle="modal" data-target="#exampleModal">
-                Launch modal
               </Button>
             </BDiv>
           </Collapse>
         </Navbar>
+
         <Container>
 
           <h5>Общая сумма:&nbsp;3434&nbsp;₽</h5>
@@ -75,13 +98,25 @@ const Layout = () => {
           <Card.Deck mb="3" mt={'3'}>
             <Card>
               <Card.Body>
-                <Card.Title>Развлечения</Card.Title>
-                <Card.Subtitle>1</Card.Subtitle>
+                <Card.Title className={'d-flex justify-content-between'}>
+                  Развлечения <EditOutlined
+                    style={{
+                      cursor: 'pointer',
+                      padding: 5,
+                      backgroundColor: '#eee',
+                      borderRadius: 5,
+                    }}
+                />
+                </Card.Title>
                 <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </Card.Text>
+                  <h5>
+                    Траты за месяц: 333 ₽
+                  </h5>
+                </Card.Text> <Card.Text>
+                <h5>
+                  Лимит на месяц: 333 ₽
+                </h5>
+              </Card.Text>
               </Card.Body>
               <Card.Footer>
                 <Card.Text>
