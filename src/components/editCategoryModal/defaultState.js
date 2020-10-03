@@ -1,7 +1,12 @@
 export default ({
   isShowing: false,
-  isLoading: false,
+  isLoadingEntity: false,
+  isLoadingCosts: false,
   error: null,
-  entity: {},
+  entity: {
+    id: '',
+    title: '',
+    sum_limit: 0,
+  },
   costs: [],
 });

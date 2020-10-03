@@ -5,6 +5,7 @@ import SetIsShowing from './setIsShowing';
 import FetchCategories from '../../categories/actions/fetchCategories';
 import firebase from '../../../api';
 import InitWallet from '../../wallet/actions/init';
+import FetchCosts from '../../editCategoryModal/actions/fetchCosts';
 
 const AddCosts = () => async (dispatch, getState) => {
   try {
@@ -14,6 +15,12 @@ const AddCosts = () => async (dispatch, getState) => {
         entity: {
           sum,
           categoryId,
+        },
+      },
+      editCategoryModal: {
+        isShowing: isShowingEditCategoryModal,
+        entity: {
+          id,
         },
       },
     } = getState();
@@ -35,6 +42,9 @@ const AddCosts = () => async (dispatch, getState) => {
     dispatch(InitWallet());
     dispatch(SetIsLoading(false));
     dispatch(SetIsShowing());
+    if (isShowingEditCategoryModal && id) {
+      dispatch(FetchCosts(id));
+    }
   } catch (error) {
     console.error(error);
     dispatch(SetError(

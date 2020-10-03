@@ -2,7 +2,6 @@
     display: inline-block;
     width: 80px;
     height: 80px;
-    z-index: 99999999;
 }
 
 .lds-dual-ring:after {
@@ -28,7 +27,6 @@
 
 .loader {
     position: absolute;
-    z-index: 9999999;
     left: 0;
     right: 0;
     top: 0;

@@ -1,12 +1,10 @@
 import SetIsShowing from './actions/setIsShowing';
 import Init from './actions/init';
-import DeleteCosts from './actions/deleteCosts';
-import EditCategory from './actions/editCategory';
+import DeleteIncomes from './actions/deleteIncomes';
 
 export const Dispatcher = dispatch => ({
   setIsShowing: () => dispatch(SetIsShowing()),
-  editCategory: (entityObj) => dispatch(EditCategory(entityObj)),
-  deleteCosts: (costsId) => dispatch(DeleteCosts(costsId)),
+  deleteIncomes: (costsId) => dispatch(DeleteIncomes(costsId)),
   init: () => dispatch(Init()),
 });
 

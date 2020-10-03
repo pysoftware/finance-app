@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import Loader from '../loader';
 import {formatter} from '../../helpers';
+import {EditOutlined} from '@ant-design/icons';
+import {Button} from 'bootstrap-4-react';
 
 const Wallet = (
     {
@@ -10,8 +12,18 @@ const Wallet = (
       isLoading,
 
       init,
+      onEditWallet,
     },
 ) => {
+
+  const iconStyle = useMemo(() => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    padding: 5,
+    fontSize: 15,
+  }), []);
 
   useEffect(() => {
     init();
@@ -19,7 +31,17 @@ const Wallet = (
 
   return (
       <Loader isLoading={isLoading}>
-        <h1>Кошелек: </h1>
+        <h1>Кошелек:
+          <EditOutlined
+              style={{
+                ...iconStyle,
+                backgroundColor: '#eee',
+                padding: 10,
+                marginLeft: 5,
+                fontSize: 25,
+              }}
+              onClick={onEditWallet}
+          /></h1>
         <h5>
           Общая сумма:&nbsp;{formatter.format(totalSum)}&nbsp;₽
         </h5>

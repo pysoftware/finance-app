@@ -1,44 +1,33 @@
 import {firestore} from 'Api';
-import SetIsLoading from './setIsLoading';
+import SetIsLoadingEntity from './setIsLoadingEntity';
 import SetError from './setError';
-import SetIsShowing from './setIsShowing';
 import FetchCategories from '../../categories/actions/fetchCategories';
+import InitWallet from '../../wallet/actions/init';
+import FetchCosts from './fetchCosts';
 
-const DeleteCosts = () => async (dispatch, getState) => {
+const DeleteCosts = (costsId) => async (dispatch, getState) => {
   try {
-    dispatch(SetIsLoading(true));
-
     const {
       editCategoryModal: {
-        entity,
+        entity: {
+          id,
+        },
       },
     } = getState();
-    const {sum_limit, title} = entity;
-    if ((!title && title.length > 5) || (sum_limit !== 0 && !sum_limit)) {
-      dispatch(SetError(
-          `
-          Неккоректно заполнены поля.
-          Название должно быть больше 5 символов.
-          `,
-      ));
-      return;
-    }
-    const response = await firestore.collection('categories').doc().set({
-      title: title.toLowerCase(),
-      sum_limit,
-    });
+    dispatch(SetIsLoadingEntity(true));
 
-    console.log(response);
+    await firestore.collection('costs').doc(costsId).delete();
+
     dispatch(FetchCategories());
-    dispatch(SetIsLoading(false));
-    dispatch(SetIsShowing());
+    dispatch(InitWallet());
+    dispatch(FetchCosts(id));
   } catch (error) {
     console.error(error);
     dispatch(SetError(
         'Ошибка удаления траты',
     ));
   } finally {
-    dispatch(SetIsLoading(false));
+    dispatch(SetIsLoadingEntity(false));
   }
 };
 

@@ -7,6 +7,7 @@ import Header from '../header';
 import Wallet from '../wallet';
 import AddIncomesModal from '../addIncomesModal';
 import EditCategoryModal from '../editCategoryModal';
+import EditWalletModal from '../editWalletModal';
 
 const Layout = () => {
 
@@ -17,6 +18,7 @@ const Layout = () => {
         <AddCategoryModal/>
         <AddIncomesModal/>
         <EditCategoryModal/>
+        <EditWalletModal/>
 
         <Header/>
         <Container>

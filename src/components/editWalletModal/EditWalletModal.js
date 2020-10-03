@@ -19,24 +19,24 @@ import Loader from '../loader';
 import {CloseCircleFilled} from '@ant-design/icons';
 import {formatter} from '../../helpers';
 
-const EditCategoryModal = (
+const EditWalletModal = (
     {
       isShowing,
-      isLoadingEntity,
-      isLoadingCosts,
-      entity,
+      isLoadingIncomes,
       error,
-      costs,
+      incomes,
 
       setIsShowing,
-      editCategory,
-      deleteCosts,
+      deleteIncomes,
+      init,
     },
 ) => {
-  const [copiedEntity, setCopiedEntity] = useState(entity);
   useEffect(() => {
-    setCopiedEntity(entity);
-  }, [entity]);
+    if (isShowing) {
+      init();
+    }
+  }, [isShowing, init]);
+
   const iconStyle = useMemo(() => ({
     display: 'inline-flex',
     alignItems: 'center',
@@ -45,10 +45,6 @@ const EditCategoryModal = (
     padding: 5,
     fontSize: 15,
   }), []);
-
-  const onChangeEntity = useCallback((obj) => {
-    setCopiedEntity(prevState => ({...prevState, ...obj}));
-  }, []);
 
   return (
       <Modal
@@ -65,43 +61,12 @@ const EditCategoryModal = (
                     </Alert>
                 )
               }
-              <Loader isLoading={isLoadingEntity}>
-                <Card.Title>
-                  Изменение категории "{entity.title}"
-                </Card.Title>
-                <Form>
-                  <Form.Group>
-                    <label>Название категории</label>
-                    <Form.Input
-                        value={copiedEntity.title}
-                        type="text"
-                        placeholder="Введите название категории"
-                        onChange={
-                          ({target: {value}}) => onChangeEntity({
-                            title: value,
-                          })
-                        }
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <label>Лимит трат</label>
-                    <Form.Input
-                        value={copiedEntity.sum_limit}
-                        type="number"
-                        placeholder="Введите лимит трат"
-                        onChange={
-                          ({target: {value}}) => onChangeEntity({
-                            sum_limit: value,
-                          })
-                        }
-                    />
-                  </Form.Group>
-                </Form>
-              </Loader>
-
-              <Loader isLoading={isLoadingCosts}>
+              <h4>
+                Доходы за месяц
+              </h4>
+              <Loader isLoading={isLoadingIncomes}>
                 {
-                  costs.length > 0 && (
+                  incomes.length > 0 ? (
                       <ListGroup
                           style={{
                             overflowY: 'scroll',
@@ -110,7 +75,7 @@ const EditCategoryModal = (
                           }}
                       >
                         {
-                          costs.map(item => {
+                          incomes.map(item => {
                             return (
                                 <ListGroup.Item
                                     key={item.id}
@@ -141,31 +106,26 @@ const EditCategoryModal = (
                                         fontSize: 30,
                                         color: 'red',
                                       }}
-                                      onClick={() => deleteCosts(item.id)}
+                                      onClick={() => deleteIncomes(item.id)}
                                   />
                                 </ListGroup.Item>
                             );
                           })
                         }
                       </ListGroup>
+                  ) : (
+                      <Lead>
+                        Ничего не найдено
+                      </Lead>
                   )
                 }
 
               </Loader>
             </Card.Body>
-
-            <Card.Footer>
-              <Button
-                  onClick={() => editCategory(copiedEntity)}
-                  success
-              >
-                Сохранить
-              </Button>
-            </Card.Footer>
           </Card>
         </Fragment>
       </Modal>
   );
 };
 
-export default EditCategoryModal;
+export default EditWalletModal;

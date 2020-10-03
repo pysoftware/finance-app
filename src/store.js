@@ -6,6 +6,7 @@ import addCategoryModalReducer from './components/addCategoryModal/reducer';
 import walletReducer from './components/wallet/reducer';
 import addIncomesModalReducer from './components/addIncomesModal/reducer';
 import editCategoryModalReducer from './components/editCategoryModal/reducer';
+import editWalletModalReducer from './components/editWalletModal/reducer';
 
 const rootReducer = combineReducers({
   categories: categoriesReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   addIncomesModal: addIncomesModalReducer,
   wallet: walletReducer,
   editCategoryModal: editCategoryModalReducer,
+  editWalletModal: editWalletModalReducer,
 });
 
 export const store = createStore(

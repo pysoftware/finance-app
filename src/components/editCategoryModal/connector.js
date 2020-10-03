@@ -4,7 +4,8 @@ export default (
         isShowing,
         entity,
         error,
-        isLoading,
+        isLoadingEntity,
+        isLoadingCosts,
         costs,
       },
     },
@@ -12,6 +13,7 @@ export default (
   isShowing,
   entity,
   error,
-  isLoading,
+  isLoadingEntity,
+  isLoadingCosts,
   costs,
 });
