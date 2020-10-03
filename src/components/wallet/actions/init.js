@@ -26,9 +26,6 @@ const InitWallet = () => async (dispatch) => {
         ).where('date', '<=', firebase.firestore.Timestamp.fromDate(
             new Date(date.getFullYear(), date.getMonth(), 31)),
         ).get();
-    const {
-      docs: allTimeIncomes,
-    } = await firestore.collection('incomes').get();
     const totalLossesPerMonth = costs.reduce(
         (sum, item) => sum + item.data().sum, 0,
     );

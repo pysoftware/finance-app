@@ -5,7 +5,7 @@ import FetchCategories from '../../categories/actions/fetchCategories';
 import InitWallet from '../../wallet/actions/init';
 import FetchIncomes from './fetchIncomes';
 
-const DeleteIncomes = (incomesId) => async (dispatch, getState) => {
+const DeleteIncomes = (incomesId) => async (dispatch) => {
   try {
     dispatch(SetIsLoadingIncomes(true));
 
