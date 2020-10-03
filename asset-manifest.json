@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/finance-app/static/css/main.69eda509.chunk.css",
-    "main.js": "/finance-app/static/js/main.44c1451b.chunk.js",
-    "main.js.map": "/finance-app/static/js/main.44c1451b.chunk.js.map",
+    "main.css": "/finance-app/static/css/main.258ccd18.chunk.css",
+    "main.js": "/finance-app/static/js/main.ecf52ca5.chunk.js",
+    "main.js.map": "/finance-app/static/js/main.ecf52ca5.chunk.js.map",
     "runtime-main.js": "/finance-app/static/js/runtime-main.ab478a5d.js",
     "runtime-main.js.map": "/finance-app/static/js/runtime-main.ab478a5d.js.map",
-    "static/js/2.66b3ab66.chunk.js": "/finance-app/static/js/2.66b3ab66.chunk.js",
-    "static/js/2.66b3ab66.chunk.js.map": "/finance-app/static/js/2.66b3ab66.chunk.js.map",
+    "static/js/2.7b22e2ea.chunk.js": "/finance-app/static/js/2.7b22e2ea.chunk.js",
+    "static/js/2.7b22e2ea.chunk.js.map": "/finance-app/static/js/2.7b22e2ea.chunk.js.map",
     "index.html": "/finance-app/index.html",
-    "precache-manifest.37c178f387f620b21e2286b903ea6de8.js": "/finance-app/precache-manifest.37c178f387f620b21e2286b903ea6de8.js",
+    "precache-manifest.3b4316a6638aea603116177898753990.js": "/finance-app/precache-manifest.3b4316a6638aea603116177898753990.js",
     "service-worker.js": "/finance-app/service-worker.js",
-    "static/css/main.69eda509.chunk.css.map": "/finance-app/static/css/main.69eda509.chunk.css.map",
-    "static/js/2.66b3ab66.chunk.js.LICENSE.txt": "/finance-app/static/js/2.66b3ab66.chunk.js.LICENSE.txt"
+    "static/css/main.258ccd18.chunk.css.map": "/finance-app/static/css/main.258ccd18.chunk.css.map",
+    "static/js/2.7b22e2ea.chunk.js.LICENSE.txt": "/finance-app/static/js/2.7b22e2ea.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ab478a5d.js",
-    "static/js/2.66b3ab66.chunk.js",
-    "static/css/main.69eda509.chunk.css",
-    "static/js/main.44c1451b.chunk.js"
+    "static/js/2.7b22e2ea.chunk.js",
+    "static/css/main.258ccd18.chunk.css",
+    "static/js/main.ecf52ca5.chunk.js"
   ]
 }
