@@ -11,6 +11,7 @@ import {
   Button,
   Form,
   BDiv,
+  Modal,
 } from 'bootstrap-4-react';
 import {firestore} from 'Api';
 import {Typography} from 'antd';
@@ -27,6 +28,28 @@ const Layout = () => {
 
   return (
       <Fragment>
+
+        <Modal id="exampleModal" fade>
+          <Modal.Dialog>
+            <Modal.Content>
+              <Modal.Header>
+                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Close>
+                  <span aria-hidden="true">&times;</span>
+                </Modal.Close>
+              </Modal.Header>
+              <Modal.Body>
+                Modal body text goes here.
+              </Modal.Body>
+              <Modal.Footer>
+                <Button secondary data-dismiss="modal">Close</Button>
+                <Button primary>Save changes</Button>
+              </Modal.Footer>
+            </Modal.Content>
+          </Modal.Dialog>
+        </Modal>
+
+
         <Navbar expand="lg" dark bg="dark" mb="3" sticky="top">
           <Navbar.Brand href="#">Финансы</Navbar.Brand>
           <Navbar.Toggler target={'#navbar'}/>
@@ -37,6 +60,9 @@ const Layout = () => {
               </Button>
               <Button info mr={2} mt={2}>
                 Добавить трату
+              </Button>
+              <Button primary data-toggle="modal" data-target="#exampleModal">
+                Launch modal
               </Button>
             </BDiv>
           </Collapse>
