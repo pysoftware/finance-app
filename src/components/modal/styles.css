@@ -9,6 +9,7 @@
 }
 
 .modalWindow {
+    max-width: 100%;
     z-index: 99999;
     position: absolute;
     top: 50%;

@@ -16,7 +16,7 @@ const AddIncomes = () => async (dispatch, getState) => {
       },
     } = getState();
 
-    if (+sum !== 0 && !+sum) {
+    if (!+sum) {
       dispatch(SetError(
           'Некоректно заполнены поля',
       ));

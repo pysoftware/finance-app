@@ -60,7 +60,7 @@ const AddCostsModal = (
                   />
                 </Form.Group>
                 {
-                  categories.length && (
+                  categories.length > 0 ? (
                       <Form.Group>
                         <label htmlFor="exampleControlsInput1">
                           Категория
@@ -89,13 +89,18 @@ const AddCostsModal = (
                           }
                         </Form.Select>
                       </Form.Group>
+                  ) : (
+                      <Alert danger>
+                        Сначала создайте категорию
+                      </Alert>
                   )
                 }
               </Form>
             </Card.Body>
             <Card.Footer>
               <Button
-                  onClick={addCosts}
+                  disabled={categories?.length <= 0}
+                  onClick={categories?.length && addCosts}
                   success
               >
                 Добавить трату

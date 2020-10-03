@@ -24,12 +24,11 @@ const AddCategory = () => async (dispatch, getState) => {
       ));
       return;
     }
-    const response = await firestore.collection('categories').doc().set({
+    await firestore.collection('categories').doc().set({
       title: title.toLowerCase(),
       sum_limit,
     });
 
-    console.log(response);
     dispatch(FetchCategories());
     dispatch(SetIsLoading(false));
     dispatch(SetIsShowing());
