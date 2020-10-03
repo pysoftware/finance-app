@@ -2,36 +2,32 @@ import {firestore} from 'Api';
 import SetIsLoading from './setIsLoading';
 import SetError from './setError';
 import SetIsShowing from './setIsShowing';
-import FetchCategories from '../../categories/actions/fetchCategories';
 import firebase from '../../../api';
 import InitWallet from '../../wallet/actions/init';
 
-const AddCosts = () => async (dispatch, getState) => {
+const AddIncomes = () => async (dispatch, getState) => {
   try {
     dispatch(SetIsLoading(true));
     const {
-      addCostsModal: {
+      addIncomesModal: {
         entity: {
           sum,
-          categoryId,
         },
       },
     } = getState();
 
-    if ((+sum !== 0 && !+sum) || !categoryId) {
+    if (+sum !== 0 && !+sum) {
       dispatch(SetError(
           'Некоректно заполнены поля',
       ));
       return;
     }
 
-    await firestore.collection('costs').doc().set({
+    await firestore.collection('incomes').doc().set({
       date: firebase.firestore.Timestamp.fromDate(new Date()),
       sum: +sum,
-      categoryId: firestore.doc(`categories/${categoryId}`),
     });
 
-    dispatch(FetchCategories());
     dispatch(InitWallet());
     dispatch(SetIsLoading(false));
     dispatch(SetIsShowing());
@@ -45,4 +41,4 @@ const AddCosts = () => async (dispatch, getState) => {
   }
 };
 
-export default AddCosts;
+export default AddIncomes;

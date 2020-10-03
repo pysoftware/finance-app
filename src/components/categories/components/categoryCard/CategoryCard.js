@@ -6,6 +6,7 @@ const CategoryCard = (
     {
       title,
       sumLimit,
+      costsSumPerMonth,
 
       onDelete,
       onEdit,
@@ -30,7 +31,7 @@ const CategoryCard = (
             }
           </Card.Title>
           <Card.Text text={'muted'}>
-            Траты за месяц: 333 ₽
+            Траты за месяц: {costsSumPerMonth} ₽
           </Card.Text>
 
           {
@@ -43,7 +44,11 @@ const CategoryCard = (
 
         </Card.Body>
         <Card.Footer className={'d-flex justify-content-between'}>
-          <Button success mr={5} onClick={onEdit}>
+          <Button
+              success
+              mr={5}
+              onClick={onEdit}
+          >
             <EditOutlined
                 style={iconStyle}
             />

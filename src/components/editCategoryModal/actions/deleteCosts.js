@@ -3,14 +3,13 @@ import SetIsLoading from './setIsLoading';
 import SetError from './setError';
 import SetIsShowing from './setIsShowing';
 import FetchCategories from '../../categories/actions/fetchCategories';
-import {transform} from 'cyrillic-to-translit-js';
 
-const AddCategory = () => async (dispatch, getState) => {
+const DeleteCosts = () => async (dispatch, getState) => {
   try {
     dispatch(SetIsLoading(true));
 
     const {
-      addCategoryModal: {
+      editCategoryModal: {
         entity,
       },
     } = getState();
@@ -36,11 +35,11 @@ const AddCategory = () => async (dispatch, getState) => {
   } catch (error) {
     console.error(error);
     dispatch(SetError(
-        'Неккоректно заполнены поля',
+        'Ошибка удаления траты',
     ));
   } finally {
     dispatch(SetIsLoading(false));
   }
 };
 
-export default AddCategory;
+export default DeleteCosts;

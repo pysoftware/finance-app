@@ -7,9 +7,30 @@ const FetchCategories = () => async (dispatch) => {
   try {
     dispatch(SetIsLoading(true));
 
-    const {
-      docs: categories,
-    } = await firestore.collection('categories').get();
+    const costsRef = firestore.collection('costs');
+    const categories = [];
+
+    await firestore.collection('categories').get().then(
+        async ({docs}) => {
+          for (const doc of docs) {
+            let costsSumPerMonth = 0;
+
+            await costsRef.where(
+                'categoryId',
+                '==',
+                firestore.doc(`categories/${doc.id}`),
+            ).get().then(snap => {
+              snap.docs.forEach(item => costsSumPerMonth += item.data().sum);
+            });
+
+            categories.push({
+              id: doc.id,
+              costsSumPerMonth,
+              ...doc.data(),
+            });
+          }
+        },
+    );
 
     dispatch(SetCategories(categories));
     dispatch(SetError(null));

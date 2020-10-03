@@ -3,20 +3,18 @@ import Modal from '../modal';
 import {Button, Form, Card, Alert} from 'bootstrap-4-react';
 import Loader from '../loader';
 
-const AddCostsModal = (
+const AddIncomesModal = (
     {
       isShowing,
-      categories,
       isLoading,
       error,
       entity: {
         sum,
-        categoryId,
       },
 
       init,
       setIsShowing,
-      addCosts,
+      addIncomes,
       onChangeEntity,
     },
 ) => {
@@ -43,7 +41,7 @@ const AddCostsModal = (
                 )
               }
               <Card.Title>
-                Добавить трату
+                Добавить доход
               </Card.Title>
               <Form>
                 <Form.Group>
@@ -59,46 +57,14 @@ const AddCostsModal = (
                       }
                   />
                 </Form.Group>
-                {
-                  categories.length && (
-                      <Form.Group>
-                        <label htmlFor="exampleControlsInput1">
-                          Категория
-                        </label>
-                        <Form.Select
-                            value={categoryId}
-                            onChange={({target: {value}}) => onChangeEntity({
-                              categoryId: value,
-                            })}>
-                          <option value={''}>
-                            Выберите
-                          </option>
-                          {
-                            categories.map(item => {
-                              return (
-                                  <option
-                                      key={item.id}
-                                      value={item.id}
-                                  >
-                                    {
-                                      item.data().title.capitalize()
-                                    }
-                                  </option>
-                              );
-                            })
-                          }
-                        </Form.Select>
-                      </Form.Group>
-                  )
-                }
               </Form>
             </Card.Body>
             <Card.Footer>
               <Button
-                  onClick={addCosts}
+                  onClick={addIncomes}
                   success
               >
-                Добавить трату
+                Добавить доход
               </Button>
             </Card.Footer>
           </Card>
@@ -107,4 +73,4 @@ const AddCostsModal = (
   );
 };
 
-export default AddCostsModal;
+export default AddIncomesModal;

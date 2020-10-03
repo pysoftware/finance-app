@@ -5,6 +5,7 @@ const Header = (
     {
       setIsShowingAddCostsModal,
       setIsShowingAddCategoryModal,
+      setIsShowingAddIncomesModal,
     },
 ) => {
   return (
@@ -22,6 +23,14 @@ const Header = (
                 onClick={setIsShowingAddCategoryModal}
             >
               Добавить категорию
+            </Button>
+            <Button
+                success
+                mr={2}
+                mt={2}
+                onClick={setIsShowingAddIncomesModal}
+            >
+              Добавить доход
             </Button>
             <Button
                 info

@@ -1,13 +1,25 @@
 import {firestore} from 'Api';
 import SetError from './setError';
 import FetchCategories from './fetchCategories';
+import InitWallet from '../../wallet/actions/init';
 
 const DeleteCategory = (id) => async (dispatch) => {
   try {
+    const batch = firestore.batch();
 
-    const value = await firestore.collection('categories').doc(id).delete();
+    const costsRef = await firestore.collection('costs').where(
+        'categoryId',
+        '==',
+        firestore.doc(`categories/${id}`),
+    ).get();
+    costsRef.forEach(doc => {
+      batch.delete(doc.ref);
+    });
 
-    console.log(value);
+    await firestore.collection('categories').doc(id).delete();
+    await batch.commit();
+
+    dispatch(InitWallet());
     dispatch(FetchCategories());
     dispatch(SetError(null));
   } catch (error) {

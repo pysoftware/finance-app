@@ -10,7 +10,7 @@ const Categories = (
 
       fetchCategories,
       deleteCategory,
-      onEdit,
+      onEditCategory,
     },
 ) => {
 
@@ -27,19 +27,21 @@ const Categories = (
               if (index % 2 === 0) {
                 items = [];
               }
-              const itemData = item.data();
               items.push((
                   <CategoryCard
                       key={item.id}
-                      title={itemData.title}
-                      sumLimit={itemData.sum_limit}
-                      onEdit={() => onEdit(item.id)}
+                      title={item.title}
+                      sumLimit={item.sum_limit}
+                      costsSumPerMonth={item.costsSumPerMonth}
+                      onEdit={() => onEditCategory(item.id)}
                       onDelete={() => deleteCategory(item.id)}
                   />
               ));
 
-              if (index > 0 && index % 2 !== 0 || categories.length ===
-                  index + 1) {
+              if (
+                  index > 0 && index % 2 !== 0
+                  || categories.length === index + 1
+              ) {
                 return (
                     <Card.Deck
                         mb={'3'}

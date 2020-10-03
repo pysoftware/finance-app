@@ -3,14 +3,13 @@ import SetIsLoading from './setIsLoading';
 import SetError from './setError';
 import SetIsShowing from './setIsShowing';
 import FetchCategories from '../../categories/actions/fetchCategories';
-import {transform} from 'cyrillic-to-translit-js';
 
-const AddCategory = () => async (dispatch, getState) => {
+const EditCategory = () => async (dispatch, getState) => {
   try {
     dispatch(SetIsLoading(true));
 
     const {
-      addCategoryModal: {
+      editCategoryModal: {
         entity,
       },
     } = getState();
@@ -43,4 +42,4 @@ const AddCategory = () => async (dispatch, getState) => {
   }
 };
 
-export default AddCategory;
+export default EditCategory;

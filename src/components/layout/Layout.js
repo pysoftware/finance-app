@@ -4,7 +4,9 @@ import {Container} from 'bootstrap-4-react';
 import AddCostsModal from '../addCostsModal';
 import AddCategoryModal from '../addCategoryModal';
 import Header from '../header';
-import GeneralInfoBlock from '../generalInfoBlock';
+import Wallet from '../wallet';
+import AddIncomesModal from '../addIncomesModal';
+import EditCategoryModal from '../editCategoryModal';
 
 const Layout = () => {
 
@@ -13,10 +15,12 @@ const Layout = () => {
 
         <AddCostsModal/>
         <AddCategoryModal/>
+        <AddIncomesModal/>
+        <EditCategoryModal/>
 
         <Header/>
         <Container>
-          <GeneralInfoBlock/>
+          <Wallet/>
           <Categories/>
         </Container>
       </Fragment>

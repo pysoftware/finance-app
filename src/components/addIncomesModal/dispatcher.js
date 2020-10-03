@@ -1,11 +1,11 @@
 import SetIsShowing from './actions/setIsShowing';
 import Init from './actions/init';
-import AddCosts from './actions/addCosts';
+import AddIncomes from './actions/addIncomes';
 import SetEntity from './actions/setEntity';
 
 export const Dispatcher = dispatch => ({
   setIsShowing: () => dispatch(SetIsShowing()),
-  addCosts: () => dispatch(AddCosts()),
+  addIncomes: () => dispatch(AddIncomes()),
   init: () => dispatch(Init()),
   onChangeEntity: (data) => dispatch(SetEntity(data)),
 });
