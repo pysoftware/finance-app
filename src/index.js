@@ -6,6 +6,10 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import {store} from './store';
 
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
