@@ -3,17 +3,13 @@ import SetIsLoading from './setIsLoading';
 import SetCategories from './setCategories';
 import SetError from './setError';
 
-const FetchCategories = (
-    {
-      LoadCategories,
-    },
-) => () => async (dispatch, getState) => {
+const FetchCategories = () => async (dispatch) => {
   try {
     dispatch(SetIsLoading(true));
 
     const {
       docs: categories,
-    } = await LoadCategories;
+    } = await firestore.collection('categories').get();
 
     dispatch(SetCategories(categories));
     dispatch(SetError(null));
@@ -25,6 +21,4 @@ const FetchCategories = (
   }
 };
 
-export default FetchCategories({
-  LoadCategories: firestore.collection('categories').get(),
-});
+export default FetchCategories;

@@ -9,6 +9,8 @@ const Categories = (
       isLoading,
 
       fetchCategories,
+      deleteCategory,
+      onEdit,
     },
 ) => {
 
@@ -31,6 +33,8 @@ const Categories = (
                       key={item.id}
                       title={itemData.title}
                       sumLimit={itemData.sum_limit}
+                      onEdit={() => onEdit(item.id)}
+                      onDelete={() => deleteCategory(item.id)}
                   />
               ));
 
