@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Card, Button} from 'bootstrap-4-react';
+import {Card, Button, Row, Col} from 'bootstrap-4-react';
 import {CloseCircleFilled, EditOutlined} from '@ant-design/icons';
 
 const CategoryCard = (
@@ -43,25 +43,38 @@ const CategoryCard = (
           }
 
         </Card.Body>
-        <Card.Footer className={'d-flex justify-content-between'}>
-          <Button
-              success
-              mr={5}
-              onClick={onEdit}
-          >
-            <EditOutlined
-                style={iconStyle}
-            />
-            Редактировать
-          </Button>
-          <Button danger onClick={onDelete}>
-            <CloseCircleFilled
-                style={{
-                  ...iconStyle,
-                }}
-            />
-            Удалить
-          </Button>
+        <Card.Footer>
+          <Row className={'d-flex justify-content-between'}>
+            <Col col={'xs'}>
+              <Button
+                  success
+                  mr={1}
+                  mt={1}
+                  onClick={onEdit}
+              >
+                <EditOutlined
+                    style={iconStyle}
+                />
+                Редактировать
+              </Button>
+
+            </Col>
+            <Col col={'xs'}>
+              <Button
+                  danger
+                  onClick={onDelete}
+                  mt={1}
+              >
+                <CloseCircleFilled
+                    style={{
+                      ...iconStyle,
+                    }}
+                />
+                Удалить
+              </Button>
+            </Col>
+          </Row>
+
         </Card.Footer>
       </Card>
   );
