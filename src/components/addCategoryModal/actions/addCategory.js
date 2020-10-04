@@ -19,7 +19,7 @@ const AddCategory = () => async (dispatch, getState) => {
       },
     } = getState();
     const {sum_limit, title} = entity;
-    if ((!title && title.length < 5) || (sum_limit !== 0 && !sum_limit)) {
+    if (!title || title.length < 5 || (sum_limit !== 0 && !sum_limit)) {
       dispatch(SetError(
           `
           Неккоректно заполнены поля.
