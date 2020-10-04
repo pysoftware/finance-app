@@ -23,9 +23,10 @@ const Layout = (
       <Fragment>
         <Header/>
 
-        <Switch>
-          {
-            isLoaded(auth) && !isEmpty(auth) && (
+        {
+          isLoaded(auth) && (
+              <Switch>
+
                 <PrivateRoute exact path={'/'}>
 
                   <AddCostsModal/>
@@ -40,18 +41,18 @@ const Layout = (
                   </Container>
 
                 </PrivateRoute>
-            )
-          }
-          <Route path={'/register'}>
-            <Register/>
-          </Route>
+                <Route path={'/register'}>
+                  <Register/>
+                </Route>
 
-          <Route path={'/login'}>
-            <Login/>
-          </Route>
+                <Route path={'/login'}>
+                  <Login/>
+                </Route>
 
-          <Redirect to={'/login'}/>
-        </Switch>
+                <Redirect to={'/login'}/>
+              </Switch>
+          )
+        }
 
       </Fragment>
   );
