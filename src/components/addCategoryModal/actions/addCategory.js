@@ -3,7 +3,6 @@ import SetIsLoading from './setIsLoading';
 import SetError from './setError';
 import SetIsShowing from './setIsShowing';
 import FetchCategories from '../../categories/actions/fetchCategories';
-import {transform} from 'cyrillic-to-translit-js';
 
 const AddCategory = () => async (dispatch, getState) => {
   try {
@@ -12,6 +11,11 @@ const AddCategory = () => async (dispatch, getState) => {
     const {
       addCategoryModal: {
         entity,
+      },
+      firebase: {
+        auth: {
+          uid,
+        },
       },
     } = getState();
     const {sum_limit, title} = entity;
@@ -27,6 +31,7 @@ const AddCategory = () => async (dispatch, getState) => {
     await firestore.collection('categories').doc().set({
       title: title.toLowerCase(),
       sum_limit,
+      userId: firestore.doc(`users/${uid}`),
     });
 
     dispatch(FetchCategories());

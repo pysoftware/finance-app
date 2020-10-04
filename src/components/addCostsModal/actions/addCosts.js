@@ -23,6 +23,11 @@ const AddCosts = () => async (dispatch, getState) => {
           id,
         },
       },
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
     } = getState();
 
     if ((+sum !== 0 && !+sum) || !categoryId) {
@@ -36,6 +41,7 @@ const AddCosts = () => async (dispatch, getState) => {
       date: firebase.firestore.Timestamp.fromDate(new Date()),
       sum: +sum,
       categoryId: firestore.doc(`categories/${categoryId}`),
+      userId: firestore.doc(`users/${uid}`),
     });
 
     dispatch(FetchCategories());

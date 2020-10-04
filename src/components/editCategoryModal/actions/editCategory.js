@@ -3,8 +3,15 @@ import SetIsLoadingEntity from './setIsLoadingEntity';
 import SetError from './setError';
 import FetchCategories from '../../categories/actions/fetchCategories';
 
-const EditCategory = (entityObj) => async (dispatch) => {
+const EditCategory = (entityObj) => async (dispatch, getState) => {
   try {
+    const {
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
+    } = getState();
     dispatch(SetIsLoadingEntity(true));
 
     const {id, sum_limit, title} = entityObj;
@@ -20,6 +27,7 @@ const EditCategory = (entityObj) => async (dispatch) => {
     await firestore.collection('categories').doc(id).set({
       title: title.toLowerCase(),
       sum_limit,
+      userId: firestore.doc(`users/${uid}`),
     });
 
     dispatch(FetchCategories());

@@ -6,26 +6,39 @@ import firebase from '../../../api';
 import SetIncomesPerMonth from './setIncomesPerMonth';
 import SetLossesPerMonth from './setLossesPerMonth';
 
-const InitWallet = () => async (dispatch) => {
+const InitWallet = () => async (dispatch, getState) => {
   try {
+    const {
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
+    } = getState();
     dispatch(SetIsLoading(true));
     const date = new Date();
     const {
       docs: costs,
-    } = await firestore.collection('costs').
-        where('date', '>=', firebase.firestore.Timestamp.fromDate(
-            new Date(date.getFullYear(), date.getMonth(), 1)),
-        ).where('date', '<=', firebase.firestore.Timestamp.fromDate(
-            new Date(date.getFullYear(), date.getMonth(), 31)),
-        ).get();
+    } = await firestore.collection('costs').where(
+        'userId',
+        '==',
+        firestore.doc(`users/${uid}`),
+    ).where('date', '>=', firebase.firestore.Timestamp.fromDate(
+        new Date(date.getFullYear(), date.getMonth(), 1)),
+    ).where('date', '<=', firebase.firestore.Timestamp.fromDate(
+        new Date(date.getFullYear(), date.getMonth(), 31)),
+    ).get();
     const {
       docs: incomes,
-    } = await firestore.collection('incomes').
-        where('date', '>=', firebase.firestore.Timestamp.fromDate(
-            new Date(date.getFullYear(), date.getMonth(), 1)),
-        ).where('date', '<=', firebase.firestore.Timestamp.fromDate(
-            new Date(date.getFullYear(), date.getMonth(), 31)),
-        ).get();
+    } = await firestore.collection('incomes').where(
+        'userId',
+        '==',
+        firestore.doc(`users/${uid}`),
+    ).where('date', '>=', firebase.firestore.Timestamp.fromDate(
+        new Date(date.getFullYear(), date.getMonth(), 1)),
+    ).where('date', '<=', firebase.firestore.Timestamp.fromDate(
+        new Date(date.getFullYear(), date.getMonth(), 31)),
+    ).get();
     const totalLossesPerMonth = costs.reduce(
         (sum, item) => sum + item.data().sum, 0,
     );

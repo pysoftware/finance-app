@@ -4,13 +4,25 @@ import SetCategories from './setCategories';
 import SetError from './setError';
 import MakeEmptyEntity from './makeEmptyEntity';
 
-const Init = () => async (dispatch) => {
+const Init = () => async (dispatch, getState) => {
   try {
+    const {
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
+    } = getState();
     dispatch(MakeEmptyEntity());
     dispatch(SetIsLoading(true));
     const {
       docs: categories,
-    } = await firestore.collection('categories').get();
+    } = await firestore.collection('categories').
+        where(
+            'userId',
+            '==',
+            firestore.doc(`users/${uid}`),
+        ).get();
 
     dispatch(SetCategories(categories));
   } catch (error) {

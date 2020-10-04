@@ -3,11 +3,22 @@ import SetError from './setError';
 import FetchCategories from './fetchCategories';
 import InitWallet from '../../wallet/actions/init';
 
-const DeleteCategory = (id) => async (dispatch) => {
+const DeleteCategory = (id) => async (dispatch, getState) => {
   try {
+    const {
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
+    } = getState();
     const batch = firestore.batch();
 
     const costsRef = await firestore.collection('costs').where(
+        'userId',
+        '==',
+        firestore.doc(`users/${uid}`),
+    ).where(
         'categoryId',
         '==',
         firestore.doc(`categories/${id}`),

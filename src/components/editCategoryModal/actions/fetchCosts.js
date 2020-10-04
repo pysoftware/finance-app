@@ -3,14 +3,25 @@ import SetError from './setError';
 import SetCosts from './setCosts';
 import SetIsLoadingCosts from './setIsLoadingCosts';
 
-const FetchCosts = (categoryId) => async (dispatch) => {
+const FetchCosts = (categoryId) => async (dispatch, getState) => {
   try {
+    const {
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
+    } = getState();
     dispatch(SetIsLoadingCosts(true));
     const date = new Date();
 
     const {
       docs: costsByCategory,
     } = await firestore.collection('costs').where(
+        'userId',
+        '==',
+        firestore.doc(`users/${uid}`),
+    ).where(
         'categoryId',
         '==',
         firestore.doc(`categories/${categoryId}`),

@@ -3,21 +3,29 @@ import SetError from './setError';
 import SetIncomes from './setIncomes';
 import SetIsLoadingIncomes from './setIsLoadingIncomes';
 
-const FetchIncomes = () => async (dispatch) => {
+const FetchIncomes = () => async (dispatch, getState) => {
   try {
+    const {
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
+    } = getState();
     dispatch(SetIsLoadingIncomes(true));
     const date = new Date();
 
     const {
       docs: incomes,
-    } = await firestore.collection('incomes').
-        where('date', '>=', firebase.firestore.Timestamp.fromDate(
-            new Date(date.getFullYear(), date.getMonth(), 1)),
-        ).
-        where('date', '<=', firebase.firestore.Timestamp.fromDate(
-            new Date(date.getFullYear(), date.getMonth(), 31)),
-        ).
-        get();
+    } = await firestore.collection('incomes').where(
+        'userId',
+        '==',
+        firestore.doc(`users/${uid}`),
+    ).where('date', '>=', firebase.firestore.Timestamp.fromDate(
+        new Date(date.getFullYear(), date.getMonth(), 1)),
+    ).where('date', '<=', firebase.firestore.Timestamp.fromDate(
+        new Date(date.getFullYear(), date.getMonth(), 31)),
+    ).get();
 
     const mappedIncomes = incomes.map(item => ({
       id: item.id,

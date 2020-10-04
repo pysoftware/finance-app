@@ -14,6 +14,11 @@ const AddIncomes = () => async (dispatch, getState) => {
           sum,
         },
       },
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
     } = getState();
 
     if (!+sum) {
@@ -26,6 +31,7 @@ const AddIncomes = () => async (dispatch, getState) => {
     await firestore.collection('incomes').doc().set({
       date: firebase.firestore.Timestamp.fromDate(new Date()),
       sum: +sum,
+      userId: firestore.doc(`users/${uid}`),
     });
 
     dispatch(InitWallet());

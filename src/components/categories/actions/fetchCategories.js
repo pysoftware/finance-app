@@ -3,14 +3,25 @@ import SetIsLoading from './setIsLoading';
 import SetCategories from './setCategories';
 import SetError from './setError';
 
-const FetchCategories = () => async (dispatch) => {
+const FetchCategories = () => async (dispatch, getState) => {
   try {
+    const {
+      firebase: {
+        auth: {
+          uid,
+        },
+      },
+    } = getState();
     dispatch(SetIsLoading(true));
 
     const costsRef = firestore.collection('costs');
     const categories = [];
 
-    await firestore.collection('categories').get().then(
+    await firestore.collection('categories').where(
+        'userId',
+        '==',
+        firestore.doc(`users/${uid}`),
+    ).get().then(
         async ({docs}) => {
           for (const doc of docs) {
             let costsSumPerMonth = 0;
@@ -19,6 +30,10 @@ const FetchCategories = () => async (dispatch) => {
                 'categoryId',
                 '==',
                 firestore.doc(`categories/${doc.id}`),
+            ).where(
+                'userId',
+                '==',
+                firestore.doc(`users/${uid}`),
             ).get().then(snap => {
               snap.docs.forEach(item => costsSumPerMonth += item.data().sum);
             });

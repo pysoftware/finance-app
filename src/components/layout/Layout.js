@@ -8,23 +8,51 @@ import Wallet from '../wallet';
 import AddIncomesModal from '../addIncomesModal';
 import EditCategoryModal from '../editCategoryModal';
 import EditWalletModal from '../editWalletModal';
+import {Redirect, Route, Switch} from 'react-router';
+import Register from '../register';
+import Login from '../login';
+import PrivateRoute from '../privateRoute';
+import {isLoaded, isEmpty} from 'react-redux-firebase';
 
-const Layout = () => {
-
+const Layout = (
+    {
+      auth,
+    },
+) => {
   return (
       <Fragment>
-
-        <AddCostsModal/>
-        <AddCategoryModal/>
-        <AddIncomesModal/>
-        <EditCategoryModal/>
-        <EditWalletModal/>
-
         <Header/>
-        <Container>
-          <Wallet/>
-          <Categories/>
-        </Container>
+
+        <Switch>
+          {
+            isLoaded(auth) && !isEmpty(auth) && (
+                <PrivateRoute exact path={'/'}>
+
+                  <AddCostsModal/>
+                  <AddCategoryModal/>
+                  <AddIncomesModal/>
+                  <EditCategoryModal/>
+                  <EditWalletModal/>
+
+                  <Container>
+                    <Wallet/>
+                    <Categories/>
+                  </Container>
+
+                </PrivateRoute>
+            )
+          }
+          <Route path={'/register'}>
+            <Register/>
+          </Route>
+
+          <Route path={'/login'}>
+            <Login/>
+          </Route>
+
+          <Redirect to={'/login'}/>
+        </Switch>
+
       </Fragment>
   );
 };
