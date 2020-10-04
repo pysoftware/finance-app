@@ -16,6 +16,7 @@ const EditCategory = (entityObj) => async (dispatch, getState) => {
 
     const {id, sum_limit, title} = entityObj;
     if ((!title && title.length < 5) || (sum_limit !== 0 && !sum_limit)) {
+      console.log(1111);
       dispatch(SetError(
           `
           Неккоректно заполнены поля.
@@ -31,6 +32,7 @@ const EditCategory = (entityObj) => async (dispatch, getState) => {
     });
 
     dispatch(FetchCategories());
+    dispatch(SetError(null));
   } catch (error) {
     console.error(error);
     dispatch(SetError(

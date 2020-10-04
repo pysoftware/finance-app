@@ -12,7 +12,6 @@ import {
   Card,
   Alert,
   ListGroup,
-  Badge,
   Lead,
 } from 'bootstrap-4-react';
 import Loader from '../loader';
