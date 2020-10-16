@@ -11,10 +11,15 @@ const Header = (
       setIsShowingAddIncomesModal,
     },
 ) => {
+
+  // добавляем на window, потому что ещё есть mobile версия приложения
+  // которая взаимодействует через нативный интерфейс с страницой
+  window.setIsShowingAddCostsModal = setIsShowingAddCostsModal;
+
   return (
       <Navbar expand="lg" dark bg="dark" mb="3" sticky="top">
         <Navbar.Brand href="#">
-          Финансы
+          Мои финансы
         </Navbar.Brand>
         <Navbar.Toggler target={'#navbar'}/>
         {
