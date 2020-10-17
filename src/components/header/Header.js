@@ -15,16 +15,19 @@ const Header = (
   // добавляем на window, потому что ещё есть mobile версия приложения
   // которая взаимодействует через нативный интерфейс с страницой
   window.setIsShowingAddCostsModal = setIsShowingAddCostsModal;
+  window.setIsShowingAddIncomesModal = setIsShowingAddIncomesModal;
+  window.setIsShowingAddCategoryModal = setIsShowingAddCategoryModal;
+  window.logout = logout;
 
   return (
       <Navbar expand="lg" dark bg="dark" mb="3" sticky="top">
         <Navbar.Brand href="#">
           Мои финансы
         </Navbar.Brand>
-        <Navbar.Toggler target={'#navbar'}/>
+        {/*<Navbar.Toggler target={'#navbar'}/>*/}
         {
           uid && (
-              <Collapse navbar id={'navbar'} justifyContent="end">
+              <Collapse navbar justifyContent="end">
                 <BDiv my="2 lg-0">
                   <Button
                       success
