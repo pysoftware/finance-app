@@ -104,7 +104,7 @@ const EditCategoryModal = (
                       <ListGroup
                           style={{
                             overflowY: 'scroll',
-                            height: 250,
+                            maxHeight: 250,
                             padding: 10,
                           }}
                       >

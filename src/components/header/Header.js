@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {BDiv, Button, Collapse, Navbar} from 'bootstrap-4-react';
 
 const Header = (
@@ -24,35 +24,49 @@ const Header = (
         <Navbar.Brand href="#">
           Мои финансы
         </Navbar.Brand>
-        {/*<Navbar.Toggler target={'#navbar'}/>*/}
+        {
+          uid && <Navbar.Toggler target={'#navbar'}/>
+        }
         {
           uid && (
-              <Collapse navbar justifyContent="end">
-                <BDiv my="2 lg-0">
-                  <Button
-                      success
-                      mr={2}
-                      mt={2}
-                      onClick={setIsShowingAddCategoryModal}
-                  >
-                    Добавить категорию
-                  </Button>
-                  <Button
-                      success
-                      mr={2}
-                      mt={2}
-                      onClick={setIsShowingAddIncomesModal}
-                  >
-                    Добавить доход
-                  </Button>
-                  <Button
-                      info
-                      mr={2}
-                      mt={2}
-                      onClick={setIsShowingAddCostsModal}
-                  >
-                    Добавить трату
-                  </Button>
+              <Fragment>
+                <Collapse navbar justifyContent="end">
+                  <BDiv my="2 lg-0">
+                    <Button
+                        success
+                        mr={2}
+                        mt={2}
+                        onClick={setIsShowingAddCategoryModal}
+                    >
+                      Добавить категорию
+                    </Button>
+                    <Button
+                        success
+                        mr={2}
+                        mt={2}
+                        onClick={setIsShowingAddIncomesModal}
+                    >
+                      Добавить доход
+                    </Button>
+                    <Button
+                        info
+                        mr={2}
+                        mt={2}
+                        onClick={setIsShowingAddCostsModal}
+                    >
+                      Добавить трату
+                    </Button>
+                    <Button
+                        warning
+                        mr={2}
+                        mt={2}
+                        onClick={logout}
+                    >
+                      Выйти
+                    </Button>
+                  </BDiv>
+                </Collapse>
+                <Collapse id={'navbar'}>
                   <Button
                       warning
                       mr={2}
@@ -61,10 +75,11 @@ const Header = (
                   >
                     Выйти
                   </Button>
-                </BDiv>
-              </Collapse>
+                </Collapse>
+              </Fragment>
           )
         }
+
       </Navbar>
   );
 };

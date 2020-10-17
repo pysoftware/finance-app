@@ -1,18 +1,13 @@
 import React, {
   Fragment,
-  useCallback,
   useEffect,
   useMemo,
-  useState,
 } from 'react';
 import Modal from '../modal';
 import {
-  Button,
-  Form,
   Card,
   Alert,
   ListGroup,
-  Badge,
   Lead,
 } from 'bootstrap-4-react';
 import Loader from '../loader';
@@ -70,7 +65,7 @@ const EditWalletModal = (
                       <ListGroup
                           style={{
                             overflowY: 'scroll',
-                            height: 250,
+                            maxHeight: 250,
                             padding: 10,
                           }}
                       >
